@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run seed:admin:*)",
+      "Bash(npm run dev:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill:*)",
+      "Bash(curl:*)",
+      "Bash(if exist package.json type package.json)",
+      "Bash(node src/app.js:*)",
+      "Bash(node -c:*)",
+      "Bash(node:*)",
+      "Bash(echo:*)",
+      "Bash(.env.timestamp)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
