@@ -147,7 +147,7 @@ La plateforme UEMOA Energy est un répertoire des acteurs de l'énergie dans la 
 
 ---
 
-### Frontend - Phase 4 🔄 EN COURS (85%)
+### Frontend - Phase 4 🔄 EN COURS (95%)
 
 #### Pages Publiques Créées
 
@@ -207,6 +207,19 @@ La plateforme UEMOA Energy est un répertoire des acteurs de l'énergie dans la 
 - Filtres avancés
 - Résultats multiples (acteurs, news, events)
 
+**✅ À propos** (`/about`)
+- Présentation de la plateforme
+- Mission et objectifs
+- 8 pays UEMOA
+- Types d'énergies renouvelables
+- Appel à l'action
+
+**✅ Contact** (`/contact`)
+- Formulaire de contact complet
+- Informations de contact
+- Liens réseaux sociaux
+- FAQ liens rapides
+
 #### Pages Authentification
 
 **✅ Connexion** (`/login`)
@@ -219,9 +232,33 @@ La plateforme UEMOA Energy est un répertoire des acteurs de l'énergie dans la 
 - Validation des champs
 - Choix du type d'utilisateur
 
+**✅ Mot de passe oublié** (`/forgot-password`)
+- Demande de réinitialisation
+- Validation email
+- Confirmation d'envoi
+
+**✅ Réinitialisation mot de passe** (`/reset-password/:token`)
+- Formulaire nouveau mot de passe
+- Validation sécurité
+- Confirmation de succès
+
 **✅ Pages de debug** (`/test-login`, `/login-debug`)
 - Tests d'authentification
 - Debug des tokens
+
+#### Pages Profil Utilisateur
+
+**✅ Profil** (`/profile`)
+- Informations utilisateur
+- Mon acteur (si créé)
+- Onglets (Info, Acteur, Activité)
+- Actions (déconnexion)
+
+**✅ Édition profil** (`/profile/edit`)
+- Modification nom/email
+- Changement mot de passe
+- Zone dangereuse (suppression compte)
+- Validation formulaires
 
 #### Pages Admin
 
