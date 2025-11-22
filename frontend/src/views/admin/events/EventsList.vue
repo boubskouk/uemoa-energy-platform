@@ -281,7 +281,8 @@ const deleteEvent = async (id) => {
 }
 
 const viewRegistrations = (id) => {
-  // TODO: Implémenter la vue des inscriptions
+  // Redirection vers la page des inscriptions (à créer)
+  // Cette fonctionnalité nécessite la création de la route et du composant EventRegistrations.vue
   router.push(`/admin/events/${id}/registrations`)
 }
 

@@ -5,7 +5,7 @@
       <img
         v-if="event.coverImage"
         :src="event.coverImage"
-        :alt="event.title.fr"
+        :alt="languageStore.getText(event.title)"
         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
       />
       <div v-else class="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
@@ -21,7 +21,7 @@
 
       <!-- Badge featured -->
       <div v-if="event.featured" class="absolute top-3 right-3">
-        <span class="badge badge-featured">⭐ Vedette</span>
+        <span class="badge badge-featured">{{ featuredText }}</span>
       </div>
 
       <!-- Badge type de localisation -->
@@ -37,7 +37,7 @@
       <!-- Titre -->
       <router-link :to="`/events/${event.slug}`">
         <h3 class="text-xl font-heading font-bold text-gray-800 mb-3 hover:text-primary-blue transition-colors line-clamp-2">
-          {{ event.title.fr }}
+          {{ languageStore.getText(event.title) }}
         </h3>
       </router-link>
 
@@ -81,7 +81,7 @@
 
           <!-- Intéressés -->
           <span class="flex items-center gap-1">
-            ⭐ {{ event.interestedCount || 0 }} intéressés
+            ⭐ {{ event.interestedCount || 0 }} {{ interestedText }}
           </span>
         </div>
 
@@ -90,7 +90,7 @@
           :to="`/events/${event.slug}`"
           class="text-primary-blue hover:text-primary-green font-semibold text-sm"
         >
-          Voir détails →
+          {{ viewDetailsText }}
         </router-link>
       </div>
     </div>
@@ -98,7 +98,8 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
+import { defineProps, computed } from 'vue'
+import { useLanguageStore } from '@/stores/language'
 
 const props = defineProps({
   event: {
@@ -107,14 +108,16 @@ const props = defineProps({
   }
 })
 
+const languageStore = useLanguageStore()
+
 const getStatusLabel = (status) => {
   const labels = {
-    upcoming: 'À venir',
-    ongoing: 'En cours',
-    past: 'Terminé',
-    cancelled: 'Annulé'
+    upcoming: { fr: 'À venir', en: 'Upcoming' },
+    ongoing: { fr: 'En cours', en: 'Ongoing' },
+    past: { fr: 'Terminé', en: 'Completed' },
+    cancelled: { fr: 'Annulé', en: 'Cancelled' }
   }
-  return labels[status] || status
+  return languageStore.getText(labels[status]) || status
 }
 
 const getStatusBadgeClass = (status) => {
@@ -129,22 +132,22 @@ const getStatusBadgeClass = (status) => {
 
 const getCategoryLabel = (category) => {
   const labels = {
-    conference: 'Conférence',
-    workshop: 'Atelier',
-    webinar: 'Webinaire',
-    fair: 'Salon',
-    training: 'Formation'
+    conference: { fr: 'Conférence', en: 'Conference' },
+    workshop: { fr: 'Atelier', en: 'Workshop' },
+    webinar: { fr: 'Webinaire', en: 'Webinar' },
+    fair: { fr: 'Salon', en: 'Fair' },
+    training: { fr: 'Formation', en: 'Training' }
   }
-  return labels[category] || category
+  return languageStore.getText(labels[category]) || category
 }
 
 const getLocationType = (type) => {
   const types = {
-    physical: 'Présentiel',
-    online: 'En ligne',
-    hybrid: 'Hybride'
+    physical: { fr: 'Présentiel', en: 'In-person' },
+    online: { fr: 'En ligne', en: 'Online' },
+    hybrid: { fr: 'Hybride', en: 'Hybrid' }
   }
-  return types[type] || 'Présentiel'
+  return languageStore.getText(types[type]) || languageStore.getText({ fr: 'Présentiel', en: 'In-person' })
 }
 
 const getLocationIcon = (type) => {
@@ -157,34 +160,39 @@ const getLocationIcon = (type) => {
 }
 
 const getLocationText = (location) => {
-  if (!location) return 'Lieu non spécifié'
+  if (!location) {
+    return languageStore.currentLanguage === 'fr' ? 'Lieu non spécifié' : 'Location not specified'
+  }
 
   if (location.type === 'online') {
-    return 'Événement en ligne'
+    return languageStore.currentLanguage === 'fr' ? 'Événement en ligne' : 'Online event'
   }
 
   if (location.venue) {
     const parts = [location.venue]
     if (location.city) parts.push(location.city)
-    if (location.country?.name?.fr) parts.push(location.country.name.fr)
+    if (location.country?.name) {
+      parts.push(languageStore.getText(location.country.name))
+    }
     return parts.join(', ')
   }
 
-  return location.city || location.country?.name?.fr || 'Lieu à définir'
+  return location.city || languageStore.getText(location.country?.name) || (languageStore.currentLanguage === 'fr' ? 'Lieu à définir' : 'Location TBD')
 }
 
 const formatEventDate = (startDate, endDate) => {
   if (!startDate) return ''
 
   const start = new Date(startDate)
+  const locale = languageStore.currentLanguage === 'fr' ? 'fr-FR' : 'en-US'
   const options = { year: 'numeric', month: 'long', day: 'numeric' }
 
   if (!endDate) {
-    return start.toLocaleDateString('fr-FR', options)
+    return start.toLocaleDateString(locale, options)
   }
 
   const end = new Date(endDate)
-  const startStr = start.toLocaleDateString('fr-FR', options)
+  const startStr = start.toLocaleDateString(locale, options)
 
   // Si même jour
   if (start.toDateString() === end.toDateString()) {
@@ -192,9 +200,21 @@ const formatEventDate = (startDate, endDate) => {
   }
 
   // Différents jours
-  const endStr = end.toLocaleDateString('fr-FR', options)
+  const endStr = end.toLocaleDateString(locale, options)
   return `${startStr} - ${endStr}`
 }
+
+const featuredText = computed(() => {
+  return languageStore.currentLanguage === 'fr' ? '⭐ Vedette' : '⭐ Featured'
+})
+
+const interestedText = computed(() => {
+  return languageStore.currentLanguage === 'fr' ? 'intéressés' : 'interested'
+})
+
+const viewDetailsText = computed(() => {
+  return languageStore.currentLanguage === 'fr' ? 'Voir détails →' : 'View details →'
+})
 </script>
 
 <style scoped>

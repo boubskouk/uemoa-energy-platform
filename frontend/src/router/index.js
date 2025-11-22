@@ -55,6 +55,20 @@ const router = createRouter({
       component: () => import('../views/Search.vue'),
       meta: { title: 'Recherche' }
     },
+    // Route Map
+    {
+      path: '/map',
+      name: 'map',
+      component: () => import('../views/Map.vue'),
+      meta: { title: 'Carte Interactive' }
+    },
+    // Route Statistics
+    {
+      path: '/statistics',
+      name: 'statistics',
+      component: () => import('../views/Statistics.vue'),
+      meta: { title: 'Statistiques' }
+    },
     // Routes Admin
     {
       path: '/admin',
@@ -102,6 +116,36 @@ const router = createRouter({
           name: 'admin-events-edit',
           component: () => import('../views/admin/events/EventForm.vue'),
           meta: { title: 'Modifier un Événement' }
+        },
+        {
+          path: 'actors',
+          name: 'admin-actors',
+          component: () => import('../views/admin/actors/ActorsList.vue'),
+          meta: { title: 'Gestion des Acteurs' }
+        },
+        {
+          path: 'actors/create',
+          name: 'admin-actors-create',
+          component: () => import('../views/admin/actors/ActorForm.vue'),
+          meta: { title: 'Créer un Acteur' }
+        },
+        {
+          path: 'actors/edit/:id',
+          name: 'admin-actors-edit',
+          component: () => import('../views/admin/actors/ActorForm.vue'),
+          meta: { title: 'Modifier un Acteur' }
+        },
+        {
+          path: 'users',
+          name: 'admin-users',
+          component: () => import('../views/admin/users/UsersList.vue'),
+          meta: { title: 'Gestion des Utilisateurs' }
+        },
+        {
+          path: 'settings',
+          name: 'admin-settings',
+          component: () => import('../views/admin/Settings.vue'),
+          meta: { title: 'Paramètres' }
         }
       ]
     },
@@ -122,6 +166,12 @@ const router = createRouter({
       name: 'test-login',
       component: () => import('../views/auth/LoginTest.vue'),
       meta: { title: 'Test Login' }
+    },
+    {
+      path: '/login-debug',
+      name: 'login-debug',
+      component: () => import('../views/auth/LoginDebug.vue'),
+      meta: { title: 'Login Debug' }
     },
     // Route 404
     {

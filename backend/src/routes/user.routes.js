@@ -81,6 +81,18 @@ router.put(
 );
 
 /**
+ * @route   PATCH /api/users/:userId/role
+ * @desc    Mettre à jour le rôle d'un utilisateur (alternative PATCH)
+ * @access  Private/Admin
+ */
+router.patch(
+  '/:userId/role',
+  authenticate,
+  authorize(USER_ROLES.ADMIN),
+  userController.updateUserRole
+);
+
+/**
  * @route   PUT /api/users/:userId/toggle-active
  * @desc    Activer/Désactiver un utilisateur
  * @access  Private/Admin

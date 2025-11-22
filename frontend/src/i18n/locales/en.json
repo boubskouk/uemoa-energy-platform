@@ -1,0 +1,251 @@
+{
+  "common": {
+    "search": "Search",
+    "filters": "Filters",
+    "all": "All",
+    "loading": "Loading...",
+    "noResults": "No results",
+    "page": "Page",
+    "of": "of",
+    "previous": "Previous",
+    "next": "Next",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "view": "View",
+    "back": "Back",
+    "close": "Close",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "nav": {
+    "home": "Home",
+    "actors": "Actors",
+    "news": "News",
+    "events": "Events",
+    "map": "Map",
+    "statistics": "Statistics",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "admin": "Administration"
+  },
+  "home": {
+    "title": "UEMOA Energy Platform",
+    "subtitle": "Directory of renewable energy actors in the UEMOA region",
+    "searchPlaceholder": "Search for an actor, organization...",
+    "exploreActors": "Explore actors",
+    "latestNews": "Latest news",
+    "upcomingEvents": "Upcoming events",
+    "viewAll": "View all",
+    "stats": {
+      "totalActors": "Actors",
+      "countries": "UEMOA Countries",
+      "solarEnergy": "Solar energy"
+    },
+    "features": {
+      "search": {
+        "title": "Advanced search",
+        "description": "Easily find actors by country, energy type or activity sector"
+      },
+      "map": {
+        "title": "Interactive map",
+        "description": "Visualize the geographical distribution of actors in UEMOA"
+      },
+      "data": {
+        "title": "Verified data",
+        "description": "Validated information updated regularly"
+      }
+    }
+  },
+  "actors": {
+    "title": "Actors List",
+    "searchPlaceholder": "Search for an actor...",
+    "filterByCountry": "Filter by country",
+    "filterByType": "Filter by type",
+    "filterByEnergy": "Filter by energy",
+    "filterByCategory": "Filter by category",
+    "verified": "Verified",
+    "featured": "Featured",
+    "allCountries": "All countries",
+    "allTypes": "All types",
+    "allEnergies": "All energies",
+    "allCategories": "All categories",
+    "resultsFound": "{count} actor(s) found",
+    "noActorsFound": "No actors found",
+    "types": {
+      "company": "Company",
+      "ngo": "NGO",
+      "association": "Association",
+      "institution": "Institution",
+      "startup": "Startup",
+      "cooperative": "Cooperative"
+    },
+    "detail": {
+      "overview": "Overview",
+      "projects": "Projects",
+      "gallery": "Gallery",
+      "contact": "Contact",
+      "description": "Description",
+      "information": "Information",
+      "location": "Location",
+      "energies": "Energies",
+      "categories": "Categories",
+      "website": "Website",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address",
+      "socialMedia": "Social media",
+      "viewProfile": "View profile"
+    }
+  },
+  "news": {
+    "title": "News",
+    "latest": "Latest news",
+    "readMore": "Read more",
+    "publishedOn": "Published on",
+    "by": "by",
+    "relatedNews": "Related news",
+    "noNews": "No news available"
+  },
+  "events": {
+    "title": "Events",
+    "upcoming": "Upcoming events",
+    "past": "Past events",
+    "ongoing": "Ongoing",
+    "date": "Date",
+    "location": "Location",
+    "participants": "Participants",
+    "register": "Register",
+    "details": "Details",
+    "noEvents": "No events available"
+  },
+  "map": {
+    "title": "Interactive Map",
+    "subtitle": "Visualize renewable energy actors in UEMOA",
+    "actorsDisplayed": "{count} actor(s) displayed",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "resetView": "Reset view"
+  },
+  "statistics": {
+    "title": "Statistics & Analysis",
+    "subtitle": "Visualize renewable energy data in UEMOA",
+    "loadingStats": "Loading statistics...",
+    "totalActors": "Total",
+    "countries": "Countries",
+    "energies": "Energies",
+    "activities": "Activities",
+    "charts": {
+      "actorsByCountry": "Actors by Country",
+      "actorsByEnergy": "Distribution by Energy Type",
+      "actorsByCategory": "Actors by Activity Category",
+      "actorsByType": "Distribution by Actor Type",
+      "evolution": "Registration Evolution",
+      "topActors": "Top 10 Most Viewed Actors"
+    },
+    "periods": {
+      "week": "Last 7 days",
+      "month": "Last 30 days",
+      "year": "Last 12 months"
+    },
+    "table": {
+      "rank": "#",
+      "name": "Name",
+      "country": "Country",
+      "type": "Type",
+      "views": "Views"
+    }
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "organization": "Organization",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "noAccount": "Don't have an account yet?",
+    "hasAccount": "Already have an account?",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "signOut": "Sign out",
+    "logoutConfirm": "Do you really want to log out?"
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "welcome": "Welcome to your administration panel",
+    "stats": {
+      "totalActors": "Total Actors",
+      "news": "News",
+      "upcomingEvents": "Upcoming Events",
+      "ongoingEvents": "ongoing",
+      "users": "Users",
+      "pendingUsers": "pending",
+      "thisMonth": "this month"
+    },
+    "charts": {
+      "actorsByCountry": "Actors by Country",
+      "actorTypes": "Actor Types"
+    },
+    "recentActivity": "Recent activity",
+    "quickActions": "Quick actions",
+    "createNews": "Create news",
+    "createEvent": "Create event",
+    "manageActors": "Manage actors",
+    "approveUsers": "Approve users",
+    "countryDistribution": "Distribution by country",
+    "latestNews": "Latest news",
+    "upcomingEvents": "Upcoming events",
+    "viewAll": "View all",
+    "status": {
+      "published": "Published",
+      "draft": "Draft",
+      "archived": "Archived"
+    },
+    "news": {
+      "title": "News Management",
+      "create": "Create News",
+      "edit": "Edit News"
+    },
+    "events": {
+      "title": "Events Management",
+      "create": "Create Event",
+      "edit": "Edit Event"
+    }
+  },
+  "countries": {
+    "BJ": "Benin",
+    "BF": "Burkina Faso",
+    "CI": "Ivory Coast",
+    "GW": "Guinea-Bissau",
+    "ML": "Mali",
+    "NE": "Niger",
+    "SN": "Senegal",
+    "TG": "Togo"
+  },
+  "errors": {
+    "404": "Page not found",
+    "goHome": "Go back home",
+    "genericError": "An error occurred"
+  },
+  "footer": {
+    "about": "Platform for referencing renewable energy actors in the UEMOA region",
+    "quickLinks": "Quick links",
+    "uemoaCountries": "UEMOA Countries",
+    "contact": "Contact",
+    "address": "UEMOA Commission, Ouagadougou, Burkina Faso",
+    "rights": "All rights reserved",
+    "privacy": "Privacy",
+    "terms": "Terms of use",
+    "cookies": "Cookies"
+  }
+}

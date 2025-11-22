@@ -1,0 +1,251 @@
+{
+  "common": {
+    "search": "Rechercher",
+    "filters": "Filtres",
+    "all": "Tous",
+    "loading": "Chargement...",
+    "noResults": "Aucun résultat",
+    "page": "Page",
+    "of": "sur",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "create": "Créer",
+    "view": "Voir",
+    "back": "Retour",
+    "close": "Fermer",
+    "confirm": "Confirmer",
+    "yes": "Oui",
+    "no": "Non"
+  },
+  "nav": {
+    "home": "Accueil",
+    "actors": "Acteurs",
+    "news": "Actualités",
+    "events": "Événements",
+    "map": "Carte",
+    "statistics": "Statistiques",
+    "about": "À propos",
+    "contact": "Contact",
+    "login": "Connexion",
+    "register": "S'inscrire",
+    "logout": "Déconnexion",
+    "admin": "Administration"
+  },
+  "home": {
+    "title": "Plateforme UEMOA Énergie",
+    "subtitle": "Répertoire des acteurs des énergies renouvelables dans l'espace UEMOA",
+    "searchPlaceholder": "Rechercher un acteur, une organisation...",
+    "exploreActors": "Explorer les acteurs",
+    "latestNews": "Dernières actualités",
+    "upcomingEvents": "Événements à venir",
+    "viewAll": "Voir tout",
+    "stats": {
+      "totalActors": "Acteurs",
+      "countries": "Pays UEMOA",
+      "solarEnergy": "Énergie solaire"
+    },
+    "features": {
+      "search": {
+        "title": "Recherche avancée",
+        "description": "Trouvez facilement les acteurs par pays, type d'énergie ou secteur d'activité"
+      },
+      "map": {
+        "title": "Carte interactive",
+        "description": "Visualisez la répartition géographique des acteurs dans l'UEMOA"
+      },
+      "data": {
+        "title": "Données vérifiées",
+        "description": "Informations validées et mises à jour régulièrement"
+      }
+    }
+  },
+  "actors": {
+    "title": "Liste des Acteurs",
+    "searchPlaceholder": "Rechercher un acteur...",
+    "filterByCountry": "Filtrer par pays",
+    "filterByType": "Filtrer par type",
+    "filterByEnergy": "Filtrer par énergie",
+    "filterByCategory": "Filtrer par catégorie",
+    "verified": "Vérifié",
+    "featured": "En vedette",
+    "allCountries": "Tous les pays",
+    "allTypes": "Tous les types",
+    "allEnergies": "Toutes les énergies",
+    "allCategories": "Toutes les catégories",
+    "resultsFound": "{count} acteur(s) trouvé(s)",
+    "noActorsFound": "Aucun acteur trouvé",
+    "types": {
+      "company": "Entreprise",
+      "ngo": "ONG",
+      "association": "Association",
+      "institution": "Institution",
+      "startup": "Startup",
+      "cooperative": "Coopérative"
+    },
+    "detail": {
+      "overview": "Aperçu",
+      "projects": "Projets",
+      "gallery": "Galerie",
+      "contact": "Contact",
+      "description": "Description",
+      "information": "Informations",
+      "location": "Localisation",
+      "energies": "Énergies",
+      "categories": "Catégories",
+      "website": "Site web",
+      "email": "Email",
+      "phone": "Téléphone",
+      "address": "Adresse",
+      "socialMedia": "Réseaux sociaux",
+      "viewProfile": "Voir le profil"
+    }
+  },
+  "news": {
+    "title": "Actualités",
+    "latest": "Dernières actualités",
+    "readMore": "Lire la suite",
+    "publishedOn": "Publié le",
+    "by": "par",
+    "relatedNews": "Actualités similaires",
+    "noNews": "Aucune actualité disponible"
+  },
+  "events": {
+    "title": "Événements",
+    "upcoming": "Événements à venir",
+    "past": "Événements passés",
+    "ongoing": "En cours",
+    "date": "Date",
+    "location": "Lieu",
+    "participants": "Participants",
+    "register": "S'inscrire",
+    "details": "Détails",
+    "noEvents": "Aucun événement disponible"
+  },
+  "map": {
+    "title": "Carte Interactive",
+    "subtitle": "Visualisez les acteurs des énergies renouvelables dans l'UEMOA",
+    "actorsDisplayed": "{count} acteur(s) affiché(s)",
+    "zoomIn": "Zoomer",
+    "zoomOut": "Dézoomer",
+    "resetView": "Réinitialiser la vue"
+  },
+  "statistics": {
+    "title": "Statistiques & Analyses",
+    "subtitle": "Visualisez les données des énergies renouvelables dans l'UEMOA",
+    "loadingStats": "Chargement des statistiques...",
+    "totalActors": "Total",
+    "countries": "Pays",
+    "energies": "Énergies",
+    "activities": "Activités",
+    "charts": {
+      "actorsByCountry": "Acteurs par Pays",
+      "actorsByEnergy": "Répartition par Type d'Énergie",
+      "actorsByCategory": "Acteurs par Catégorie d'Activité",
+      "actorsByType": "Répartition par Type d'Acteur",
+      "evolution": "Évolution des Inscriptions",
+      "topActors": "Top 10 Acteurs les Plus Vus"
+    },
+    "periods": {
+      "week": "7 derniers jours",
+      "month": "30 derniers jours",
+      "year": "12 derniers mois"
+    },
+    "table": {
+      "rank": "#",
+      "name": "Nom",
+      "country": "Pays",
+      "type": "Type",
+      "views": "Vues"
+    }
+  },
+  "auth": {
+    "login": "Connexion",
+    "register": "Inscription",
+    "email": "Email",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "organization": "Organisation",
+    "rememberMe": "Se souvenir de moi",
+    "forgotPassword": "Mot de passe oublié ?",
+    "noAccount": "Pas encore de compte ?",
+    "hasAccount": "Déjà un compte ?",
+    "signIn": "Se connecter",
+    "signUp": "S'inscrire",
+    "signOut": "Se déconnecter",
+    "logoutConfirm": "Voulez-vous vraiment vous déconnecter ?"
+  },
+  "admin": {
+    "dashboard": "Tableau de bord",
+    "welcome": "Bienvenue sur votre espace d'administration",
+    "stats": {
+      "totalActors": "Total Acteurs",
+      "news": "Actualités",
+      "upcomingEvents": "Événements à venir",
+      "ongoingEvents": "en cours",
+      "users": "Utilisateurs",
+      "pendingUsers": "en attente",
+      "thisMonth": "ce mois"
+    },
+    "charts": {
+      "actorsByCountry": "Acteurs par Pays",
+      "actorTypes": "Types d'Acteurs"
+    },
+    "recentActivity": "Activité récente",
+    "quickActions": "Actions rapides",
+    "createNews": "Créer une actualité",
+    "createEvent": "Créer un événement",
+    "manageActors": "Gérer les acteurs",
+    "approveUsers": "Approuver utilisateurs",
+    "countryDistribution": "Répartition par pays",
+    "latestNews": "Dernières actualités",
+    "upcomingEvents": "Prochains événements",
+    "viewAll": "Voir tout",
+    "status": {
+      "published": "Publié",
+      "draft": "Brouillon",
+      "archived": "Archivé"
+    },
+    "news": {
+      "title": "Gestion des Actualités",
+      "create": "Créer une Actualité",
+      "edit": "Modifier une Actualité"
+    },
+    "events": {
+      "title": "Gestion des Événements",
+      "create": "Créer un Événement",
+      "edit": "Modifier un Événement"
+    }
+  },
+  "countries": {
+    "BJ": "Bénin",
+    "BF": "Burkina Faso",
+    "CI": "Côte d'Ivoire",
+    "GW": "Guinée-Bissau",
+    "ML": "Mali",
+    "NE": "Niger",
+    "SN": "Sénégal",
+    "TG": "Togo"
+  },
+  "errors": {
+    "404": "Page non trouvée",
+    "goHome": "Retour à l'accueil",
+    "genericError": "Une erreur s'est produite"
+  },
+  "footer": {
+    "about": "Plateforme de référencement des acteurs des énergies renouvelables dans l'espace UEMOA",
+    "quickLinks": "Liens rapides",
+    "uemoaCountries": "Pays UEMOA",
+    "contact": "Contact",
+    "address": "Commission UEMOA, Ouagadougou, Burkina Faso",
+    "rights": "Tous droits réservés",
+    "privacy": "Confidentialité",
+    "terms": "Conditions d'utilisation",
+    "cookies": "Cookies"
+  }
+}

@@ -35,11 +35,13 @@ api.interceptors.response.use(
       // La requête a été faite et le serveur a répondu avec un code d'erreur
       switch (error.response.status) {
         case 401:
-          // Non autorisé - Rediriger vers login
-          localStorage.removeItem('token')
-          localStorage.removeItem('user')
-          if (window.location.pathname !== '/login') {
-            window.location.href = '/login'
+          // Non autorisé - Rediriger vers login seulement si ce n'est pas une tentative de login
+          if (!error.config.url.includes('/auth/login')) {
+            localStorage.removeItem('token')
+            localStorage.removeItem('user')
+            if (window.location.pathname !== '/login') {
+              window.location.href = '/login'
+            }
           }
           break
         case 403:

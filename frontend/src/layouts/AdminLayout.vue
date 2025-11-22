@@ -39,8 +39,10 @@
           v-for="item in menuItems"
           :key="item.path"
           :to="item.path"
-          class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition-colors"
-          active-class="bg-primary-green"
+          :class="[
+            'flex items-center gap-3 px-4 py-3 rounded-lg transition-colors',
+            isActiveRoute(item) ? 'bg-green-600 text-white' : 'hover:bg-gray-800'
+          ]"
         >
           <span class="text-xl">{{ item.icon }}</span>
           <span v-if="sidebarOpen" class="flex-1">{{ item.label }}</span>
@@ -133,9 +135,11 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
 
 const route = useRoute()
 const router = useRouter()
+const authStore = useAuthStore()
 
 const sidebarOpen = ref(true)
 
@@ -158,9 +162,20 @@ const currentPageTitle = computed(() => {
   return item?.label
 })
 
-const handleLogout = () => {
-  // TODO: Implémenter la déconnexion
+const isActiveRoute = (item) => {
+  if (item.exact) {
+    return route.path === item.path
+  }
+  // Pour éviter que /admin soit actif sur toutes les pages
+  if (item.path === '/admin') {
+    return route.path === '/admin'
+  }
+  return route.path.startsWith(item.path)
+}
+
+const handleLogout = async () => {
   if (confirm('Voulez-vous vraiment vous déconnecter ?')) {
+    authStore.logout()
     router.push('/login')
   }
 }

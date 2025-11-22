@@ -11,6 +11,8 @@ const energiesRoutes = require('./energies.routes');
 const newsRoutes = require('./news.routes');
 const eventsRoutes = require('./events.routes');
 const searchRoutes = require('./search.routes');
+const statsRoutes = require('./stats.routes');
+const uploadRoutes = require('./upload.routes');
 
 // Utiliser les routes
 router.use('/auth', authRoutes);
@@ -22,8 +24,7 @@ router.use('/energies', energiesRoutes);
 router.use('/news', newsRoutes);
 router.use('/events', eventsRoutes);
 router.use('/search', searchRoutes);
-
-// TODO: Ajouter les autres routes au fur et à mesure
-// router.use('/stats', statsRoutes);
+router.use('/stats', statsRoutes);
+router.use('/upload', uploadRoutes);
 
 module.exports = router;

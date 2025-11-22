@@ -5,7 +5,7 @@
       <img
         v-if="news.coverImage"
         :src="news.coverImage"
-        :alt="news.title.fr"
+        :alt="languageStore.getText(news.title)"
         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
       />
       <div v-else class="w-full h-full bg-gradient-to-br from-primary-green to-primary-blue flex items-center justify-center">
@@ -21,7 +21,7 @@
 
       <!-- Badge featured -->
       <div v-if="news.featured" class="absolute top-3 right-3">
-        <span class="badge badge-featured">⭐ À la une</span>
+        <span class="badge badge-featured">{{ featuredText }}</span>
       </div>
     </router-link>
 
@@ -30,13 +30,13 @@
       <!-- Titre -->
       <router-link :to="`/news/${news.slug}`">
         <h3 class="text-xl font-heading font-bold text-gray-800 mb-3 hover:text-primary-green transition-colors line-clamp-2">
-          {{ news.title.fr }}
+          {{ languageStore.getText(news.title) }}
         </h3>
       </router-link>
 
       <!-- Extrait -->
-      <p v-if="news.excerpt?.fr" class="text-gray-600 mb-4 line-clamp-3">
-        {{ news.excerpt.fr }}
+      <p v-if="news.excerpt" class="text-gray-600 mb-4 line-clamp-3">
+        {{ languageStore.getText(news.excerpt) }}
       </p>
 
       <!-- Tags -->
@@ -69,7 +69,7 @@
           :to="`/news/${news.slug}`"
           class="text-primary-green hover:text-primary-blue font-semibold"
         >
-          Lire la suite →
+          {{ readMoreText }}
         </router-link>
       </div>
     </div>
@@ -77,7 +77,8 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
+import { defineProps, computed } from 'vue'
+import { useLanguageStore } from '@/stores/language'
 
 const props = defineProps({
   news: {
@@ -86,25 +87,36 @@ const props = defineProps({
   }
 })
 
+const languageStore = useLanguageStore()
+
 const getCategoryLabel = (category) => {
   const labels = {
-    announcement: 'Annonce',
-    project: 'Projet',
-    event: 'Événement',
-    innovation: 'Innovation',
-    policy: 'Politique'
+    announcement: { fr: 'Annonce', en: 'Announcement' },
+    project: { fr: 'Projet', en: 'Project' },
+    event: { fr: 'Événement', en: 'Event' },
+    innovation: { fr: 'Innovation', en: 'Innovation' },
+    policy: { fr: 'Politique', en: 'Policy' }
   }
-  return labels[category] || category
+  return languageStore.getText(labels[category]) || category
 }
 
 const formatDate = (date) => {
   if (!date) return ''
-  return new Date(date).toLocaleDateString('fr-FR', {
+  const locale = languageStore.currentLanguage === 'fr' ? 'fr-FR' : 'en-US'
+  return new Date(date).toLocaleDateString(locale, {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
   })
 }
+
+const featuredText = computed(() => {
+  return languageStore.currentLanguage === 'fr' ? '⭐ À la une' : '⭐ Featured'
+})
+
+const readMoreText = computed(() => {
+  return languageStore.currentLanguage === 'fr' ? 'Lire la suite →' : 'Read more →'
+})
 </script>
 
 <style scoped>

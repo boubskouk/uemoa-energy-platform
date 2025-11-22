@@ -12,20 +12,32 @@ const app = express();
 app.use(helmet());
 
 // CORS
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Autoriser les requêtes sans origine (comme Postman) ou depuis localhost en développement
+    if (!origin || process.env.NODE_ENV === 'development') {
+      callback(null, true);
+    } else if (origin && origin.startsWith('http://localhost')) {
+      callback(null, true);
+    } else {
+      callback(new Error('Non autorisé par CORS'));
+    }
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
-}));
+};
 
-// Rate limiting
+app.use(cors(corsOptions));
+
+// Rate limiting - Configuration plus souple en développement
 const limiter = rateLimit({
   windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000, // 15 minutes
-  max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 100,
+  max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || (process.env.NODE_ENV === 'development' ? 1000 : 100),
   message: 'Trop de requêtes depuis cette IP, veuillez réessayer plus tard.',
   standardHeaders: true,
   legacyHeaders: false,
+  skip: (req) => process.env.NODE_ENV === 'development' && req.ip === '::1' // Skip pour localhost en dev
 });
 app.use('/api', limiter);
 

@@ -5,23 +5,39 @@
         <!-- Logo UEMOA et titre -->
         <router-link to="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
           <!-- Logo UEMOA -->
-          <div class="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-green-600 to-yellow-500 rounded-lg shadow-md">
-            <svg viewBox="0 0 100 100" class="w-8 h-8">
-              <!-- Étoiles UEMOA (8 pays) -->
-              <g fill="white">
-                <circle cx="50" cy="20" r="3"/>
-                <circle cx="70" cy="30" r="3"/>
-                <circle cx="80" cy="50" r="3"/>
-                <circle cx="70" cy="70" r="3"/>
-                <circle cx="50" cy="80" r="3"/>
-                <circle cx="30" cy="70" r="3"/>
-                <circle cx="20" cy="50" r="3"/>
-                <circle cx="30" cy="30" r="3"/>
-              </g>
-              <!-- Cercle central -->
-              <circle cx="50" cy="50" r="15" fill="none" stroke="white" stroke-width="2"/>
+          <div class="flex items-center justify-center w-12 h-12 bg-white rounded-lg shadow-md overflow-hidden">
+            <!-- Utilisez votre propre logo en le plaçant dans src/assets/images/uemoa-logo.png -->
+            <img
+              v-if="logoExists"
+              src="@/assets/images/uemoa-logo.png"
+              alt="Logo UEMOA"
+              class="w-full h-full object-contain p-1"
+              @error="logoExists = false"
+            />
+            <!-- Logo SVG de fallback si le logo n'est pas encore ajouté -->
+            <svg v-else viewBox="0 0 100 100" class="w-8 h-8">
+              <!-- Étoiles UEMOA (8 pays) avec couleurs variées -->
+              <circle cx="50" cy="20" r="3" fill="#00CED1"/><!-- Turquoise -->
+              <circle cx="70" cy="30" r="3" fill="#1E90FF"/><!-- Bleu de mer -->
+              <circle cx="80" cy="50" r="3" fill="#FFB347"/><!-- Orange-jaune -->
+              <circle cx="70" cy="70" r="3" fill="#16a34a"/><!-- Vert -->
+              <circle cx="50" cy="80" r="3" fill="#00CED1"/><!-- Turquoise -->
+              <circle cx="30" cy="70" r="3" fill="#1E90FF"/><!-- Bleu de mer -->
+              <circle cx="20" cy="50" r="3" fill="#FFB347"/><!-- Orange-jaune -->
+              <circle cx="30" cy="30" r="3" fill="#16a34a"/><!-- Vert -->
+
+              <!-- Cercle central avec dégradé -->
+              <defs>
+                <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#00CED1;stop-opacity:1" />
+                  <stop offset="33%" style="stop-color:#1E90FF;stop-opacity:1" />
+                  <stop offset="66%" style="stop-color:#FFB347;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#16a34a;stop-opacity:1" />
+                </linearGradient>
+              </defs>
+              <circle cx="50" cy="50" r="15" fill="none" stroke="url(#circleGradient)" stroke-width="2"/>
               <!-- Feuille (énergie verte) -->
-              <path d="M50 45 Q 55 35 50 30 Q 45 35 50 45" fill="white"/>
+              <path d="M50 45 Q 55 35 50 30 Q 45 35 50 45" fill="#16a34a"/>
             </svg>
           </div>
 
@@ -29,7 +45,7 @@
             <h1 class="text-xl font-heading font-bold text-gray-900">
               UEMOA Energy
             </h1>
-            <p class="text-xs text-gray-600">Répertoire des acteurs</p>
+            <p class="text-xs text-gray-600">{{ $t('home.title') }}</p>
           </div>
         </router-link>
 
@@ -40,7 +56,7 @@
               v-model="searchQuery"
               @keydown.enter="performSearch"
               type="text"
-              placeholder="Rechercher..."
+              :placeholder="$t('common.search') + '...'"
               class="w-full px-10 py-2 border border-gray-300 rounded-lg focus:border-primary-green focus:outline-none text-sm"
             />
             <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
@@ -58,7 +74,7 @@
             class="nav-link"
             active-class="nav-link-active"
           >
-            🏠 Accueil
+            🏠 {{ $t('nav.home') }}
           </router-link>
 
           <router-link
@@ -66,7 +82,7 @@
             class="nav-link"
             active-class="nav-link-active"
           >
-            👥 Acteurs
+            👥 {{ $t('nav.actors') }}
           </router-link>
 
           <router-link
@@ -74,7 +90,7 @@
             class="nav-link"
             active-class="nav-link-active"
           >
-            📰 Actualités
+            📰 {{ $t('nav.news') }}
           </router-link>
 
           <router-link
@@ -82,15 +98,18 @@
             class="nav-link"
             active-class="nav-link-active"
           >
-            📅 Événements
+            📅 {{ $t('nav.events') }}
           </router-link>
+
+          <!-- Sélecteur de langue -->
+          <LanguageSwitcher />
 
           <!-- Bouton de connexion -->
           <router-link
             to="/login"
             class="px-4 py-2 bg-primary-green text-white rounded-lg hover:bg-primary-green/90 transition-colors font-medium text-sm"
           >
-            Se connecter
+            {{ $t('nav.login') }}
           </router-link>
         </div>
 
@@ -168,6 +187,11 @@
             📅 Événements
           </router-link>
 
+          <!-- Sélecteur de langue mobile -->
+          <div class="px-4 py-3">
+            <LanguageSwitcher />
+          </div>
+
           <router-link
             to="/login"
             class="mt-2 px-4 py-2 bg-primary-green text-white rounded-lg hover:bg-primary-green/90 transition-colors font-medium text-sm text-center"
@@ -184,8 +208,12 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import LanguageSwitcher from '../common/LanguageSwitcher.vue'
 
 const router = useRouter()
+
+// Gestion du logo
+const logoExists = ref(true)
 
 const mobileMenuOpen = ref(false)
 const searchQuery = ref('')

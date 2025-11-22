@@ -75,6 +75,35 @@
       </div>
     </div>
 
+    <!-- Graphiques -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- Graphique: Acteurs par pays -->
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Acteurs par Pays</h2>
+        <div class="h-64">
+          <BarChart
+            v-if="chartDataByCountry.labels.length > 0"
+            :labels="chartDataByCountry.labels"
+            :data="chartDataByCountry.data"
+            label="Acteurs"
+            background-color="#16a34a"
+          />
+        </div>
+      </div>
+
+      <!-- Graphique: Répartition par type -->
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Types d'Acteurs</h2>
+        <div class="h-64">
+          <DoughnutChart
+            v-if="chartDataByType.labels.length > 0"
+            :labels="chartDataByType.labels"
+            :data="chartDataByType.data"
+          />
+        </div>
+      </div>
+    </div>
+
     <!-- Graphiques et activités récentes -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
       <!-- Activité récente -->
@@ -220,7 +249,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import api from '@/services/api'
+import BarChart from '@/components/charts/BarChart.vue'
+import DoughnutChart from '@/components/charts/DoughnutChart.vue'
 
 // Statistiques
 const stats = ref({
@@ -276,6 +308,31 @@ const countryStats = ref([
   { code: 'TG', name: 'Togo', flag: '🇹🇬', count: 0 }
 ])
 
+// Répartition par type d'acteur
+const actorTypeStats = ref([])
+
+// Computed pour les données des graphiques
+const chartDataByCountry = computed(() => ({
+  labels: countryStats.value.map(item => item.country || item.name),
+  data: countryStats.value.map(item => item.count)
+}))
+
+const chartDataByType = computed(() => {
+  const typeLabels = {
+    'company': 'Entreprise',
+    'ngo': 'ONG',
+    'association': 'Association',
+    'institution': 'Institution',
+    'startup': 'Startup',
+    'cooperative': 'Coopérative'
+  }
+
+  return {
+    labels: actorTypeStats.value.map(item => typeLabels[item._id] || item._id),
+    data: actorTypeStats.value.map(item => item.count)
+  }
+})
+
 // Dernières actualités
 const latestNews = ref([
   { id: 1, title: 'Nouveau projet solaire au Sénégal', date: '14 Nov 2025', status: 'Publié', coverImage: null },
@@ -302,20 +359,51 @@ const getStatusBadge = (status) => {
 
 // Charger les statistiques
 const loadStats = async () => {
-  // TODO: Charger depuis l'API
-  stats.value = {
-    actors: 142,
-    news: 87,
-    upcomingEvents: 12,
-    ongoingEvents: 3,
-    users: 254,
-    pendingUsers: 5
-  }
+  try {
+    // Charger les stats depuis l'API
+    const [dashboardRes, typeRes] = await Promise.all([
+      api.get('/stats/admin-dashboard'),
+      api.get('/stats/by-actor-type')
+    ])
 
-  // Simuler les stats par pays
-  countryStats.value.forEach((country, index) => {
-    country.count = Math.floor(Math.random() * 30) + 10
-  })
+    console.log('📊 Admin Dashboard Stats:', dashboardRes.data)
+    console.log('📊 Actor Type Stats:', typeRes.data)
+
+    // Vérifier si les données existent
+    if (!dashboardRes.data || !dashboardRes.data.stats) {
+      console.warn('⚠️ Pas de données stats dans la réponse admin-dashboard')
+      return
+    }
+
+    const data = dashboardRes.data.stats
+
+    stats.value = {
+      actors: data.totalActors || 0,
+      news: data.totalNews || 0,
+      upcomingEvents: data.upcomingEvents || 0,
+      ongoingEvents: data.ongoingEvents || 0,
+      users: data.totalUsers || 0,
+      pendingUsers: data.pendingActors || 0
+    }
+
+    // Mettre à jour les stats par pays
+    if (data.byCountry && data.byCountry.length > 0) {
+      countryStats.value = data.byCountry.map(item => ({
+        country: item.country.name.fr,
+        flag: item.country.flag,
+        count: item.count
+      }))
+    }
+
+    // Mettre à jour les stats par type d'acteur
+    if (typeRes.data && typeRes.data.stats && typeRes.data.stats.length > 0) {
+      actorTypeStats.value = typeRes.data.stats
+    }
+  } catch (error) {
+    console.error('❌ Erreur lors du chargement des stats admin:', error)
+    console.error('Détails:', error.response?.data || error.message)
+    // Garder les valeurs par défaut en cas d'erreur
+  }
 }
 
 onMounted(() => {

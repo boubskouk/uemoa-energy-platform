@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(nul)",
+      "Bash(find:*)",
+      "Bash(npm run dev:*)",
+      "Bash(timeout 5 bash:*)",
+      "Bash(curl:*)",
+      "Bash(npm run seed:news:*)",
+      "Bash(npm run seed:events:*)",
+      "Bash(python -m json.tool:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill:*)",
+      "Bash(tasklist:*)",
+      "Bash(src/server.js)",
+      "Bash(npm run seed:admin:*)",
+      "Bash(node -e:*)",
+      "Bash(node check-admin.js:*)",
+      "Bash(npm install:*)",
+      "Bash(timeout 3 bash:*)",
+      "Bash(npm run seed:categories:*)",
+      "Bash(npm run seed:energies:*)",
+      "Bash(npm run seed:actors:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
