@@ -13,6 +13,7 @@ const eventsRoutes = require('./events.routes');
 const searchRoutes = require('./search.routes');
 const statsRoutes = require('./stats.routes');
 const uploadRoutes = require('./upload.routes');
+const setupRoutes = require('./setup.routes');
 
 // Utiliser les routes
 router.use('/auth', authRoutes);
@@ -26,5 +27,6 @@ router.use('/events', eventsRoutes);
 router.use('/search', searchRoutes);
 router.use('/stats', statsRoutes);
 router.use('/upload', uploadRoutes);
+router.use('/setup', setupRoutes);
 
 module.exports = router;
