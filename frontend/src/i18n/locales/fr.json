@@ -247,5 +247,206 @@
     "privacy": "Confidentialité",
     "terms": "Conditions d'utilisation",
     "cookies": "Cookies"
+  },
+  "about": {
+    "title": "À propos de la plateforme",
+    "subtitle": "Votre portail vers les énergies renouvelables en Afrique de l'Ouest",
+    "mission": {
+      "title": "Notre Mission",
+      "description": "La plateforme UEMOA Energy vise à centraliser et promouvoir les acteurs des énergies renouvelables dans les huit pays membres de l'Union Économique et Monétaire Ouest-Africaine (UEMOA).",
+      "goal": "Notre objectif est de faciliter les connexions, encourager la collaboration et accélérer la transition énergétique dans la région."
+    },
+    "objectives": {
+      "title": "Nos Objectifs",
+      "obj1": "Répertorier tous les acteurs des énergies renouvelables de la zone UEMOA",
+      "obj2": "Faciliter les partenariats et les échanges entre acteurs",
+      "obj3": "Promouvoir les projets et initiatives en énergies renouvelables",
+      "obj4": "Fournir des statistiques et analyses sur le secteur énergétique"
+    },
+    "countries": {
+      "title": "Les 8 Pays UEMOA"
+    },
+    "energies": {
+      "title": "Types d'Énergies Renouvelables",
+      "solar": "Énergie Solaire",
+      "solarDesc": "Exploitation de l'énergie du soleil via panneaux photovoltaïques",
+      "wind": "Énergie Éolienne",
+      "windDesc": "Production d'électricité grâce à la force du vent",
+      "hydro": "Énergie Hydraulique",
+      "hydroDesc": "Utilisation de la force de l'eau pour générer de l'électricité",
+      "biomass": "Biomasse",
+      "biomassDesc": "Valorisation énergétique de matières organiques",
+      "geothermal": "Géothermie",
+      "geothermalDesc": "Exploitation de la chaleur de la terre",
+      "marine": "Énergie Marine",
+      "marineDesc": "Utilisation des marées et des vagues"
+    },
+    "cta": {
+      "title": "Rejoignez la Communauté",
+      "description": "Inscrivez-vous dès aujourd'hui pour faire partie du réseau des acteurs des énergies renouvelables de l'UEMOA.",
+      "register": "Créer un compte",
+      "explore": "Explorer les acteurs"
+    }
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Une question ? Nous sommes là pour vous aider",
+    "form": {
+      "title": "Envoyez-nous un message",
+      "name": "Nom complet",
+      "email": "Adresse email",
+      "subject": "Sujet",
+      "selectSubject": "Sélectionnez un sujet",
+      "subjects": {
+        "general": "Question générale",
+        "technical": "Support technique",
+        "partnership": "Partenariat",
+        "actor": "Information sur un acteur",
+        "other": "Autre"
+      },
+      "message": "Votre message",
+      "submit": "Envoyer le message",
+      "sending": "Envoi en cours..."
+    },
+    "info": {
+      "title": "Informations de Contact",
+      "email": "Email",
+      "phone": "Téléphone",
+      "address": "Adresse",
+      "social": "Réseaux Sociaux"
+    },
+    "faq": {
+      "title": "Liens Utiles",
+      "browseActors": "Parcourir les acteurs",
+      "createAccount": "Créer un compte",
+      "aboutPlatform": "À propos de la plateforme"
+    },
+    "success": "Votre message a été envoyé avec succès. Nous vous répondrons dans les plus brefs délais.",
+    "error": "Une erreur s'est produite lors de l'envoi de votre message. Veuillez réessayer.",
+    "errors": {
+      "name": "Le nom doit contenir au moins 2 caractères",
+      "email": "Veuillez entrer une adresse email valide",
+      "message": "Le message doit contenir au moins 10 caractères"
+    }
+  },
+  "profile": {
+    "title": "Mon Profil",
+    "admin": "Administrateur",
+    "user": "Utilisateur",
+    "edit": "Modifier le profil",
+    "tabs": {
+      "info": "Informations",
+      "actor": "Mon Acteur",
+      "activity": "Activité"
+    },
+    "info": {
+      "name": "Nom",
+      "email": "Email",
+      "role": "Rôle",
+      "joinDate": "Membre depuis"
+    },
+    "actor": {
+      "noActor": "Vous n'avez pas encore créé de profil acteur",
+      "createPrompt": "Créez votre profil pour être référencé dans l'annuaire",
+      "create": "Créer mon profil acteur",
+      "view": "Voir le profil public",
+      "edit": "Modifier",
+      "country": "Pays",
+      "city": "Ville",
+      "views": "Vues",
+      "contacts": "Contacts",
+      "status": {
+        "approved": "Approuvé",
+        "pending": "En attente",
+        "rejected": "Rejeté"
+      }
+    },
+    "activity": {
+      "noActivity": "Aucune activité récente"
+    },
+    "actions": {
+      "title": "Actions",
+      "logout": "Se déconnecter"
+    },
+    "error": "Impossible de charger le profil"
+  },
+  "profileEdit": {
+    "title": "Modifier mon profil",
+    "back": "Retour au profil",
+    "changePassword": "Changer le mot de passe",
+    "passwordHint": "Laissez vide si vous ne souhaitez pas changer votre mot de passe",
+    "form": {
+      "name": "Nom complet",
+      "email": "Adresse email",
+      "currentPassword": "Mot de passe actuel",
+      "newPassword": "Nouveau mot de passe",
+      "confirmPassword": "Confirmer le nouveau mot de passe",
+      "save": "Enregistrer les modifications",
+      "saving": "Enregistrement...",
+      "cancel": "Annuler"
+    },
+    "dangerZone": {
+      "title": "Zone dangereuse",
+      "description": "La suppression de votre compte est irréversible. Toutes vos données seront perdues.",
+      "delete": "Supprimer mon compte"
+    },
+    "deleteModal": {
+      "title": "Supprimer le compte",
+      "warning": "Êtes-vous sûr de vouloir supprimer définitivement votre compte ? Cette action est irréversible.",
+      "confirm": "Oui, supprimer",
+      "cancel": "Annuler",
+      "success": "Votre compte a été supprimé",
+      "error": "Erreur lors de la suppression du compte"
+    },
+    "success": "Profil mis à jour avec succès",
+    "error": "Erreur lors de la mise à jour du profil",
+    "errors": {
+      "name": "Le nom doit contenir au moins 2 caractères",
+      "email": "Veuillez entrer une adresse email valide",
+      "currentPassword": "Le mot de passe actuel est requis",
+      "newPassword": "Le mot de passe doit contenir au moins 6 caractères",
+      "confirmPassword": "Les mots de passe ne correspondent pas"
+    }
+  },
+  "forgotPassword": {
+    "title": "Mot de passe oublié",
+    "subtitle": "Entrez votre email pour recevoir un lien de réinitialisation",
+    "form": {
+      "email": "Adresse email",
+      "emailPlaceholder": "votre@email.com",
+      "submit": "Envoyer le lien",
+      "sending": "Envoi en cours..."
+    },
+    "backToLogin": "Retour à la connexion",
+    "success": {
+      "title": "Email envoyé !",
+      "message": "Un lien de réinitialisation a été envoyé à :",
+      "backToLogin": "Retour à la connexion"
+    },
+    "error": "Erreur lors de l'envoi de l'email",
+    "errors": {
+      "email": "Veuillez entrer une adresse email valide"
+    }
+  },
+  "resetPassword": {
+    "title": "Réinitialiser le mot de passe",
+    "subtitle": "Choisissez un nouveau mot de passe sécurisé",
+    "form": {
+      "newPassword": "Nouveau mot de passe",
+      "confirmPassword": "Confirmer le mot de passe",
+      "passwordHint": "Au moins 6 caractères",
+      "submit": "Réinitialiser",
+      "resetting": "Réinitialisation..."
+    },
+    "success": {
+      "title": "Mot de passe réinitialisé !",
+      "message": "Votre mot de passe a été changé avec succès.",
+      "login": "Se connecter"
+    },
+    "error": "Erreur lors de la réinitialisation",
+    "errors": {
+      "password": "Le mot de passe doit contenir au moins 6 caractères",
+      "confirmPassword": "Les mots de passe ne correspondent pas"
+    }
   }
 }

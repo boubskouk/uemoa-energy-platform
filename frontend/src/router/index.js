@@ -69,6 +69,32 @@ const router = createRouter({
       component: () => import('../views/Statistics.vue'),
       meta: { title: 'Statistiques' }
     },
+    // Routes About & Contact
+    {
+      path: '/about',
+      name: 'about',
+      component: () => import('../views/About.vue'),
+      meta: { title: 'À propos' }
+    },
+    {
+      path: '/contact',
+      name: 'contact',
+      component: () => import('../views/Contact.vue'),
+      meta: { title: 'Contact' }
+    },
+    // Routes Profile
+    {
+      path: '/profile',
+      name: 'profile',
+      component: () => import('../views/Profile.vue'),
+      meta: { title: 'Mon Profil', requiresAuth: true }
+    },
+    {
+      path: '/profile/edit',
+      name: 'profile-edit',
+      component: () => import('../views/ProfileEdit.vue'),
+      meta: { title: 'Modifier Mon Profil', requiresAuth: true }
+    },
     // Routes Admin
     {
       path: '/admin',
@@ -160,6 +186,18 @@ const router = createRouter({
       name: 'register',
       component: () => import('../views/auth/Register.vue'),
       meta: { title: 'Inscription', guest: true }
+    },
+    {
+      path: '/forgot-password',
+      name: 'forgot-password',
+      component: () => import('../views/ForgotPassword.vue'),
+      meta: { title: 'Mot de passe oublié', guest: true }
+    },
+    {
+      path: '/reset-password/:token',
+      name: 'reset-password',
+      component: () => import('../views/ResetPassword.vue'),
+      meta: { title: 'Réinitialiser le mot de passe', guest: true }
     },
     {
       path: '/test-login',
