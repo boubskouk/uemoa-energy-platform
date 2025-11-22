@@ -3,8 +3,8 @@ const Country = require('../models/Country');
 const Category = require('../models/Category');
 const Energy = require('../models/Energy');
 
-// Données des acteurs réels UEMOA
-const realActorsData = require('../data/real-actors.data');
+// Données des acteurs réels UEMOA (normalisées)
+const realActorsData = require('../data/real-actors-fixed.data');
 
 /**
  * Initialiser les acteurs réels UEMOA

@@ -7,18 +7,19 @@ module.exports = [
   // ==========================================
   {
     name: "Commission UEMOA (DEMEN)",
-    type: "Institution",
+    type: "institution_publique",
     category: "Institution Régionale",
-    description: "Direction de l'Environnement et de la Maîtrise de l'Énergie de la Commission de l'UEMOA",
+    description: {
+      fr: "Direction de l'Environnement et de la Maîtrise de l'Énergie de la Commission de l'UEMOA"
+    },
     country: "BF",
+    city: "Ouagadougou",
+    address: "380, Avenue du Professeur Joseph KI-ZERBO, 01 BP 543",
     energyTypes: ["Solaire", "Éolienne", "Hydraulique", "Biomasse"],
-    website: "http://www.uemoa.int",
-    email: "contact@uemoa.int",
-    phone: "+226 25 31 88 88",
-    address: {
-      street: "380, Avenue du Professeur Joseph KI-ZERBO",
-      city: "Ouagadougou",
-      postalCode: "01 BP 543"
+    contact: {
+      website: "http://www.uemoa.int",
+      email: "contact@uemoa.int",
+      phone: "+226 25 31 88 88"
     },
     featured: true,
     verified: true,
