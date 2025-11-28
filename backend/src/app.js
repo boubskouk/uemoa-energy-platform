@@ -56,7 +56,9 @@ const limiter = rateLimit({
   message: 'Trop de requêtes depuis cette IP, veuillez réessayer plus tard.',
   standardHeaders: true,
   legacyHeaders: false,
-  skip: (req) => process.env.NODE_ENV === 'development' && req.ip === '::1' // Skip pour localhost en dev
+  skip: (req) => process.env.NODE_ENV === 'development' && req.ip === '::1', // Skip pour localhost en dev
+  // Désactiver la validation trust proxy pour Render/Heroku
+  validate: { trustProxy: false }
 });
 app.use('/api', limiter);
 
