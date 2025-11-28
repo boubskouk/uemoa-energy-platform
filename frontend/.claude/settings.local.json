@@ -4,7 +4,9 @@
       "Bash(git add:*)",
       "Bash(git commit -m \"$(cat <<''EOF''\n✨ Phase 3 Backend complétée + Début Phase 4 Frontend\n\nBackend - Phase 3 (Complète):\n- ✅ API Catégories CRUD complète (routes admin)\n- ✅ API Énergies CRUD complète (routes admin)\n- ✅ API Statistiques complète (8 endpoints)\n- ✅ Système d''upload Cloudinary + fallback local\n- ✅ API Users avec gestion complète\n- ✅ Seeders pour actualités, événements, acteurs\n- ✅ Configuration Cloudinary\n- ✅ Documentation PHASE3_COMPLETED.md\n\nFrontend - Phase 4 (En cours):\n- ✅ Internationalisation i18n (FR/EN)\n- ✅ Composants communs: Slider, LanguageSwitcher, Footer\n- ✅ Composants acteurs: ActorCard\n- ✅ Composants carte: MapView avec Leaflet\n- ✅ Composants graphiques: BarChart, DoughnutChart, LineChart\n- ✅ Pages publiques: Home, ActorsList, ActorDetail, Map, Statistics\n- ✅ Pages actualités/événements complètes\n- ✅ Pages authentification: Login, Register, LoginDebug\n- ✅ Pages admin: Dashboard, Settings\n- ✅ Gestion admin complète: actors, users, news, events\n- ✅ Store Pinia: language, actors, reference, news, events\n- ✅ Routeur étendu avec toutes les pages\n- ✅ Styles CSS améliorés\n\nDocumentation ajoutée:\n- ACCES_APPLICATION.md\n- CONNEXION_GUIDE.md\n- GUIDE_AJOUT_LOGO.md\n- RESOLUTION_CONNEXION.md\n- SLIDER_GUIDE.md\n\nFichiers modifiés: 30 fichiers\nLignes ajoutées: +2224, supprimées: -730\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
       "Bash(git commit:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(python -m json.tool:*)",
+      "Bash(npm run dev:*)"
     ],
     "deny": [],
     "ask": []

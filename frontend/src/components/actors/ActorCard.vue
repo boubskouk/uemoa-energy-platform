@@ -1,92 +1,99 @@
 <template>
   <router-link
     :to="`/actors/${actor._id}`"
-    class="block bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group"
+    class="block bg-white/70 backdrop-blur-md rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group border border-white/20 hover:border-primary-green/30 hover:scale-105"
   >
-    <!-- Image/Logo -->
-    <div class="relative h-48 bg-gradient-to-br from-primary-green to-primary-blue overflow-hidden">
+    <!-- Image/Logo with Gradient Overlay -->
+    <div class="relative h-52 bg-gradient-to-br from-primary-green via-green-500 to-primary-blue overflow-hidden">
       <img
         v-if="actor.images?.coverImage"
         :src="actor.images.coverImage"
         :alt="actor.name"
-        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
       />
-      <div class="absolute inset-0 bg-black/20"></div>
+      <!-- Glassmorphism overlay -->
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/40"></div>
 
-      <!-- Logo superposé -->
-      <div class="absolute bottom-4 left-4 w-16 h-16 bg-white rounded-lg shadow-lg overflow-hidden border-2 border-white">
+      <!-- Logo superposé avec glassmorphism -->
+      <div class="absolute bottom-4 left-4 w-20 h-20 bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl overflow-hidden border-4 border-white/50 group-hover:scale-110 transition-transform duration-300">
         <img
           v-if="actor.images?.logo"
           :src="actor.images.logo"
           :alt="actor.name"
-          class="w-full h-full object-contain p-1"
+          class="w-full h-full object-contain p-2"
         />
-        <div v-else class="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary-green to-primary-blue text-white text-xl font-bold">
+        <div v-else class="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary-green to-primary-blue text-white text-2xl font-bold">
           {{ actor.name.charAt(0) }}
         </div>
       </div>
 
-      <!-- Badges -->
+      <!-- Badges with glassmorphism -->
       <div class="absolute top-4 right-4 flex gap-2">
-        <span v-if="actor.verified" class="px-2 py-1 bg-green-500 text-white text-xs font-semibold rounded-full">
+        <span v-if="actor.verified" class="px-3 py-1.5 bg-green-500/90 backdrop-blur-sm text-white text-xs font-bold rounded-xl shadow-lg border border-white/30">
           ✓ Vérifié
         </span>
-        <span v-if="actor.featured" class="px-2 py-1 bg-yellow-500 text-white text-xs font-semibold rounded-full">
-          ⭐
+        <span v-if="actor.featured" class="px-3 py-1.5 bg-yellow-500/90 backdrop-blur-sm text-white text-xs font-bold rounded-xl shadow-lg border border-white/30">
+          ⭐ Vedette
         </span>
       </div>
     </div>
 
-    <!-- Content -->
-    <div class="p-4">
+    <!-- Content with enhanced spacing -->
+    <div class="p-5">
       <!-- Nom -->
-      <h3 class="text-lg font-bold text-gray-900 mb-2 line-clamp-1 group-hover:text-primary-green transition-colors">
+      <h3 class="text-xl font-bold text-gray-900 mb-2 line-clamp-1 group-hover:text-primary-green transition-colors duration-300">
         {{ actor.name }}
       </h3>
 
-      <!-- Type -->
-      <p class="text-sm text-gray-600 mb-3">
-        {{ getActorTypeLabel(actor.type) }}
-      </p>
+      <!-- Type with icon -->
+      <div class="flex items-center gap-2 mb-3">
+        <span class="px-3 py-1 bg-gradient-to-r from-primary-blue/10 to-blue-500/10 text-primary-blue text-xs font-bold rounded-lg">
+          {{ getActorTypeIcon(actor.type) }} {{ getActorTypeLabel(actor.type) }}
+        </span>
+      </div>
 
       <!-- Description -->
-      <p class="text-sm text-gray-600 mb-4 line-clamp-2">
+      <p class="text-sm text-gray-700 mb-4 line-clamp-2 leading-relaxed">
         {{ actor.description?.fr || 'Aucune description disponible.' }}
       </p>
 
-      <!-- Location -->
-      <div class="flex items-center gap-2 text-sm text-gray-600 mb-3">
-        <span>{{ actor.country?.flag }}</span>
-        <span class="font-medium">{{ actor.location?.city || actor.country?.name?.fr }}</span>
+      <!-- Location with enhanced design -->
+      <div class="flex items-center gap-2 text-sm text-gray-600 mb-4 bg-gray-50/50 rounded-lg px-3 py-2">
+        <span class="text-xl">{{ actor.country?.flag }}</span>
+        <span class="font-semibold">{{ actor.city || actor.location?.city || actor.country?.name?.fr }}</span>
       </div>
 
-      <!-- Energies -->
-      <div v-if="actor.energies && actor.energies.length > 0" class="flex flex-wrap gap-1 mb-3">
+      <!-- Energies with larger icons -->
+      <div v-if="actor.energyTypes && actor.energyTypes.length > 0" class="flex flex-wrap gap-2 mb-4">
         <span
-          v-for="energy in actor.energies.slice(0, 3)"
-          :key="energy._id"
-          class="text-xl"
-          :title="energy.name?.fr"
+          v-for="(energy, index) in actor.energyTypes.slice(0, 4)"
+          :key="index"
+          class="text-2xl hover:scale-125 transition-transform duration-300"
+          :title="energy"
         >
-          {{ energy.icon }}
+          {{ getEnergyIcon(energy) }}
         </span>
-        <span v-if="actor.energies.length > 3" class="text-sm text-gray-500">
-          +{{ actor.energies.length - 3 }}
+        <span v-if="actor.energyTypes.length > 4" class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded-full font-semibold self-center">
+          +{{ actor.energyTypes.length - 4 }}
         </span>
       </div>
 
-      <!-- Stats -->
-      <div class="flex items-center justify-between pt-3 border-t border-gray-200">
+      <!-- Stats with enhanced design -->
+      <div class="flex items-center justify-between pt-4 border-t-2 border-gray-100">
         <div class="flex items-center gap-4 text-sm text-gray-500">
-          <span class="flex items-center gap-1">
-            👁️ {{ actor.stats?.views || 0 }}
-          </span>
-          <span class="flex items-center gap-1">
-            📧 {{ actor.stats?.contacts || 0 }}
+          <span class="flex items-center gap-1.5 hover:text-primary-green transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+              <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+            </svg>
+            <span class="font-medium">{{ actor.stats?.views || 0 }}</span>
           </span>
         </div>
-        <span class="text-primary-green text-sm font-semibold group-hover:underline">
-          Voir plus →
+        <span class="text-primary-green text-sm font-bold group-hover:gap-2 flex items-center gap-1 transition-all">
+          Voir plus
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
         </span>
       </div>
     </div>
@@ -103,14 +110,45 @@ defineProps({
 
 const getActorTypeLabel = (type) => {
   const labels = {
-    'company': 'Entreprise',
-    'ngo': 'ONG',
+    'institution_publique': 'Institution Publique',
+    'entreprise': 'Entreprise',
+    'ong': 'ONG',
     'association': 'Association',
-    'institution': 'Institution',
-    'startup': 'Startup',
-    'cooperative': 'Coopérative'
+    'universite': 'Université',
+    'cooperative': 'Coopérative',
+    'startup': 'Startup'
   }
   return labels[type] || type
+}
+
+const getActorTypeIcon = (type) => {
+  const icons = {
+    'institution_publique': '🏛️',
+    'entreprise': '🏢',
+    'ong': '🤝',
+    'association': '👥',
+    'universite': '🎓',
+    'cooperative': '🌾',
+    'startup': '🚀'
+  }
+  return icons[type] || '📋'
+}
+
+const getEnergyIcon = (energyName) => {
+  const icons = {
+    'Solaire': '☀️',
+    'Solar': '☀️',
+    'Éolienne': '💨',
+    'Wind': '💨',
+    'Hydraulique': '💧',
+    'Hydro': '💧',
+    'Biomasse': '🌿',
+    'Biomass': '🌿',
+    'Géothermie': '🌋',
+    'Geothermal': '🌋',
+    'Multi': '⚡'
+  }
+  return icons[energyName] || '⚡'
 }
 </script>
 

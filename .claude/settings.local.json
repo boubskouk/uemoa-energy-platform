@@ -21,7 +21,13 @@
       "Bash(timeout 3 bash:*)",
       "Bash(npm run seed:categories:*)",
       "Bash(npm run seed:energies:*)",
-      "Bash(npm run seed:actors:*)"
+      "Bash(npm run seed:actors:*)",
+      "Bash(timeout 5 npm run dev:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(timeout 10 npm start)",
+      "Bash(npm start)",
+      "Bash(node:*)"
     ],
     "deny": [],
     "ask": []

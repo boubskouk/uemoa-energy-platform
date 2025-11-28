@@ -3,8 +3,8 @@ const Country = require('../models/Country');
 const Category = require('../models/Category');
 const Energy = require('../models/Energy');
 
-// Données des acteurs réels UEMOA (normalisées)
-const realActorsData = require('../data/real-actors-fixed.data');
+// Données des acteurs vérifiés UEMOA (33 acteurs - sources officielles)
+const realActorsData = require('../data/verified-actors.data');
 
 /**
  * Initialiser les acteurs réels UEMOA
@@ -63,6 +63,9 @@ exports.initRealActors = async (req, res) => {
       if (actor.category && categoryMap[actor.category]) {
         actorData.categories = [categoryMap[actor.category]];
       }
+
+      // Retirer temporairement les projets (à ajouter via update plus tard)
+      delete actorData.projects;
 
       return actorData;
     });
