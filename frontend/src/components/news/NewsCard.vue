@@ -1,7 +1,7 @@
 <template>
   <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group">
     <!-- Image de couverture -->
-    <router-link :to="`/news/${news.slug}`" class="block relative overflow-hidden h-48">
+    <router-link :to="newsLink" class="block relative overflow-hidden h-48">
       <img
         v-if="news.coverImage"
         :src="news.coverImage"
@@ -28,7 +28,7 @@
     <!-- Contenu -->
     <div class="p-5">
       <!-- Titre -->
-      <router-link :to="`/news/${news.slug}`">
+      <router-link :to="newsLink">
         <h3 class="text-xl font-heading font-bold text-gray-800 mb-3 hover:text-primary-green transition-colors line-clamp-2">
           {{ languageStore.getText(news.title) }}
         </h3>
@@ -66,7 +66,7 @@
 
         <!-- Bouton lire plus -->
         <router-link
-          :to="`/news/${news.slug}`"
+          :to="newsLink"
           class="text-primary-green hover:text-primary-blue font-semibold"
         >
           {{ readMoreText }}
@@ -88,6 +88,13 @@ const props = defineProps({
 })
 
 const languageStore = useLanguageStore()
+
+// Computed property pour générer le lien sécurisé
+const newsLink = computed(() => {
+  // Utiliser le slug en priorité, sinon l'_id
+  const identifier = props.news.slug || props.news._id
+  return identifier ? `/news/${identifier}` : '/news'
+})
 
 const getCategoryLabel = (category) => {
   const labels = {

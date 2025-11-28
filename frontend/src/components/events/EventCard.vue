@@ -1,7 +1,7 @@
 <template>
   <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group">
     <!-- Image de couverture -->
-    <router-link :to="`/events/${event.slug}`" class="block relative overflow-hidden h-48">
+    <router-link :to="eventLink" class="block relative overflow-hidden h-48">
       <img
         v-if="event.coverImage"
         :src="event.coverImage"
@@ -35,7 +35,7 @@
     <!-- Contenu -->
     <div class="p-5">
       <!-- Titre -->
-      <router-link :to="`/events/${event.slug}`">
+      <router-link :to="eventLink">
         <h3 class="text-xl font-heading font-bold text-gray-800 mb-3 hover:text-primary-blue transition-colors line-clamp-2">
           {{ languageStore.getText(event.title) }}
         </h3>
@@ -87,7 +87,7 @@
 
         <!-- Bouton voir détails -->
         <router-link
-          :to="`/events/${event.slug}`"
+          :to="eventLink"
           class="text-primary-blue hover:text-primary-green font-semibold text-sm"
         >
           {{ viewDetailsText }}
@@ -106,6 +106,13 @@ const props = defineProps({
     type: Object,
     required: true
   }
+})
+
+// Computed property pour générer le lien sécurisé
+const eventLink = computed(() => {
+  // Utiliser le slug en priorité, sinon l'_id
+  const identifier = props.event.slug || props.event._id
+  return identifier ? `/events/${identifier}` : '/events'
 })
 
 const languageStore = useLanguageStore()
