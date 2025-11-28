@@ -265,6 +265,14 @@ const error = computed(() => eventsStore.error)
 const loadEvent = async () => {
   try {
     const identifier = route.params.slug || route.params.id
+
+    // Vérifier que l'identifiant est valide
+    if (!identifier || identifier === 'undefined' || identifier === 'null') {
+      console.error('Identifiant invalide:', identifier)
+      router.push('/events')
+      return
+    }
+
     await eventsStore.fetchEventById(identifier)
   } catch (err) {
     console.error('Erreur lors du chargement de l\'événement:', err)

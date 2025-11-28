@@ -167,6 +167,14 @@ const error = computed(() => newsStore.error)
 const loadNews = async () => {
   try {
     const identifier = route.params.slug || route.params.id
+
+    // Vérifier que l'identifiant est valide
+    if (!identifier || identifier === 'undefined' || identifier === 'null') {
+      console.error('Identifiant invalide:', identifier)
+      router.push('/news')
+      return
+    }
+
     await newsStore.fetchNewsById(identifier)
   } catch (err) {
     console.error('Erreur lors du chargement de l\'actualité:', err)
