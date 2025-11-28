@@ -6,6 +6,12 @@ const { errorHandler } = require('./middlewares/error.middleware');
 
 const app = express();
 
+// ========== CONFIGURATION EXPRESS ==========
+
+// Trust proxy - Important pour Render, Heroku, etc.
+// Permet au rate limiter de récupérer la vraie IP via X-Forwarded-For
+app.set('trust proxy', true);
+
 // ========== MIDDLEWARES DE SÉCURITÉ ==========
 
 // Helmet pour sécuriser les headers HTTP
