@@ -14,14 +14,27 @@ app.use(helmet());
 // CORS
 const corsOptions = {
   origin: function (origin, callback) {
-    // Autoriser les requêtes sans origine (comme Postman) ou depuis localhost en développement
-    if (!origin || process.env.NODE_ENV === 'development') {
-      callback(null, true);
-    } else if (origin && origin.startsWith('http://localhost')) {
-      callback(null, true);
-    } else {
-      callback(new Error('Non autorisé par CORS'));
+    // Autoriser les requêtes sans origine (comme Postman)
+    if (!origin) {
+      return callback(null, true);
     }
+
+    // En développement, autoriser localhost
+    if (process.env.NODE_ENV === 'development' && origin.startsWith('http://localhost')) {
+      return callback(null, true);
+    }
+
+    // En production, vérifier la variable CORS_ORIGIN
+    const allowedOrigins = process.env.CORS_ORIGIN ?
+      process.env.CORS_ORIGIN.split(',').map(o => o.trim()) :
+      [];
+
+    if (allowedOrigins.includes(origin) || allowedOrigins.includes('*')) {
+      return callback(null, true);
+    }
+
+    console.log('❌ CORS: Origine refusée:', origin);
+    callback(new Error('Non autorisé par CORS'));
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
