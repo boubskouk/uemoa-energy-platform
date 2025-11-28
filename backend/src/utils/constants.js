@@ -39,7 +39,10 @@ exports.NEWS_CATEGORIES = [
   'project',
   'event',
   'innovation',
-  'policy'
+  'policy',
+  'financing',
+  'infrastructure',
+  'access'
 ];
 
 // Statuts de publication

@@ -102,7 +102,10 @@ const getCategoryLabel = (category) => {
     project: { fr: 'Projet', en: 'Project' },
     event: { fr: 'Événement', en: 'Event' },
     innovation: { fr: 'Innovation', en: 'Innovation' },
-    policy: { fr: 'Politique', en: 'Policy' }
+    policy: { fr: 'Politique', en: 'Policy' },
+    financing: { fr: 'Financement', en: 'Financing' },
+    infrastructure: { fr: 'Infrastructure', en: 'Infrastructure' },
+    access: { fr: 'Accès à l\'énergie', en: 'Energy Access' }
   }
   return languageStore.getText(labels[category]) || category
 }

@@ -208,7 +208,10 @@ const getCategoryLabel = (category) => {
     project: 'Projet',
     event: 'Événement',
     innovation: 'Innovation',
-    policy: 'Politique'
+    policy: 'Politique',
+    financing: 'Financement',
+    infrastructure: 'Infrastructure',
+    access: 'Accès à l\'énergie'
   }
   return labels[category] || category
 }
